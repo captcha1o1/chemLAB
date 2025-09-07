@@ -597,18 +597,48 @@
 
             <!-- Preset Molecules Section -->
             <div class="section-card">
-                <h3>📚 Preset Molecules</h3>
-                <div class="molecule-grid">
-                    <button class="molecule-btn active" data-molecule="water">💧 Water (H₂O)</button>
-                    <button class="molecule-btn" data-molecule="methane">⚡ Methane (CH₄)</button>
+                <h3>📚 Preset Molecules <button onclick="toggleMoleculeList()" class="btn btn-secondary" style="float: right; padding: 4px 8px; font-size: 12px;" id="minimize-btn">− Minimize</button></h3>
+                <div class="molecule-grid" id="molecule-list">
+                    <!-- Basic Molecules -->
+                    <div style="width: 100%; margin: 10px 0; padding: 8px; background: var(--bg-tertiary); border-radius: 8px; font-weight: 600; color: var(--text-secondary);">🧬 Basic Molecules</div>
+                    <button class="molecule-btn active" data-molecule="hydrogen">⚡ Hydrogen (H₂)</button>
+                    <button class="molecule-btn" data-molecule="oxygen">🔥 Oxygen (O₂)</button>
+                    <button class="molecule-btn" data-molecule="nitrogen">💨 Nitrogen (N₂)</button>
+                    <button class="molecule-btn" data-molecule="water">💧 Water (H₂O)</button>
                     <button class="molecule-btn" data-molecule="ammonia">🧪 Ammonia (NH₃)</button>
+
+                    <!-- Carbon Compounds -->
+                    <div style="width: 100%; margin: 10px 0; padding: 8px; background: var(--bg-tertiary); border-radius: 8px; font-weight: 600; color: var(--text-secondary);">⚗️ Carbon Compounds</div>
+                    <button class="molecule-btn" data-molecule="methane">⚡ Methane (CH₄)</button>
+                    <button class="molecule-btn" data-molecule="ethylene">🔗 Ethylene (C₂H₄)</button>
+                    <button class="molecule-btn" data-molecule="acetylene">💎 Acetylene (C₂H₂)</button>
+                    <button class="molecule-btn" data-molecule="carbon_monoxide">☠️ Carbon Monoxide (CO)</button>
                     <button class="molecule-btn" data-molecule="carbon-dioxide">🌬️ Carbon Dioxide (CO₂)</button>
+                    <button class="molecule-btn" data-molecule="ozone">🌪️ Ozone (O₃)</button>
                     <button class="molecule-btn" data-molecule="ethanol">🍺 Ethanol (C₂H₅OH)</button>
                     <button class="molecule-btn" data-molecule="benzene">🔶 Benzene (C₆H₆)</button>
                     <button class="molecule-btn" data-molecule="glucose">🍬 Glucose (C₆H₁₂O₆)</button>
                     <button class="molecule-btn" data-molecule="acetone">🧴 Acetone (C₃H₆O)</button>
                     <button class="molecule-btn" data-molecule="formaldehyde">⚗️ Formaldehyde (CH₂O)</button>
                     <button class="molecule-btn" data-molecule="hydrogen-peroxide">🧴 Hydrogen Peroxide (H₂O₂)</button>
+
+                    <!-- Phosphorus Compounds -->
+                    <div style="width: 100%; margin: 10px 0; padding: 8px; background: var(--bg-tertiary); border-radius: 8px; font-weight: 600; color: var(--text-secondary);">🔥 Phosphorus Compounds</div>
+                    <button class="molecule-btn" data-molecule="phosphine">☣️ Phosphine (PH₃)</button>
+                    <button class="molecule-btn" data-molecule="phosphorus_pentachloride">🧪 PCl₅</button>
+                    <button class="molecule-btn" data-molecule="phosphorus_pentafluoride">⚗️ PF₅</button>
+
+                    <!-- Halogen Compounds -->
+                    <div style="width: 100%; margin: 10px 0; padding: 8px; background: var(--bg-tertiary); border-radius: 8px; font-weight: 600; color: var(--text-secondary);">⚡ Halogen Compounds</div>
+                    <button class="molecule-btn" data-molecule="chlorine_trifluoride">🧪 ClF₃</button>
+                    <button class="molecule-btn" data-molecule="bromine_pentafluoride">🧪 BrF₅</button>
+                    <button class="molecule-btn" data-molecule="sulfur_hexafluoride">🧪 SF₆</button>
+
+                    <!-- Noble Gas Compounds -->
+                    <div style="width: 100%; margin: 10px 0; padding: 8px; background: var(--bg-tertiary); border-radius: 8px; font-weight: 600; color: var(--text-secondary);">👑 Noble Gas Compounds</div>
+                    <button class="molecule-btn" data-molecule="xenon_difluoride">🧪 XeF₂</button>
+                    <button class="molecule-btn" data-molecule="xenon_oxytetrafluoride">🧪 XeOF₄</button>
+                    <button class="molecule-btn" data-molecule="krypton_difluoride">🧪 KrF₂</button>
                 </div>
             </div>
 
@@ -835,7 +865,7 @@ Bonds:
             I: 0.42
         };
         
-        // Molecule data
+        // Molecule data with detailed analysis
         const molecules = {
             water: {
                 name: "Water",
@@ -849,12 +879,193 @@ Bonds:
                 bonds: [
                     { atoms: [0, 1], type: 1 },
                     { atoms: [0, 2], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Two single bonds (O-H)<br>
+                    • <strong>Bond angles:</strong> 104.5°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> O (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on central atom:</strong> 2<br>
+                    • <strong>Bond pairs on central atom:</strong> 2<br>
+                    • <strong>Dipole moment:</strong> 1.85 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Bent/Angular<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
+            },
+            hydrogen: {
+                name: "Hydrogen",
+                formula: "H₂",
+                description: "The simplest molecule consisting of two hydrogen atoms bonded together.",
+                atoms: [
+                    { element: 'H', position: [-0.5, 0, 0] },
+                    { element: 'H', position: [0.5, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One single bond (H-H)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs:</strong> 0<br>
+                    • <strong>Bond pairs:</strong> 1<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> None (s orbitals)<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Linear
+                `
+            },
+            oxygen: {
+                name: "Oxygen",
+                formula: "O₂",
+                description: "Molecular oxygen essential for respiration, with a double bond between two oxygen atoms.",
+                atoms: [
+                    { element: 'O', position: [-0.6, 0, 0] },
+                    { element: 'O', position: [0.6, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 2 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One double bond (O=O)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs per atom:</strong> 2<br>
+                    • <strong>Bond pairs:</strong> 2<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp²<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Linear
+                `
+            },
+            nitrogen: {
+                name: "Nitrogen",
+                formula: "N₂",
+                description: "Molecular nitrogen with a triple bond, making up 78% of Earth's atmosphere.",
+                atoms: [
+                    { element: 'N', position: [-0.55, 0, 0] },
+                    { element: 'N', position: [0.55, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 3 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One triple bond (N≡N)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs per atom:</strong> 1<br>
+                    • <strong>Bond pairs:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Linear
+                `
+            },
+            carbon_monoxide: {
+                name: "Carbon Monoxide",
+                formula: "CO",
+                description: "A toxic gas with a triple bond between carbon and oxygen atoms.",
+                atoms: [
+                    { element: 'C', position: [-0.57, 0, 0] },
+                    { element: 'O', position: [0.57, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 3 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One triple bond (C≡O)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ+), O (δ-)<br>
+                    • <strong>Lone pairs on carbon:</strong> 0<br>
+                    • <strong>Lone pairs on oxygen:</strong> 1<br>
+                    • <strong>Bond pairs:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 0.11 D (slightly polar)<br>
+                    • <strong>Hybridization:</strong> sp<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Linear
+                `
+            },
+            ozone: {
+                name: "Ozone",
+                formula: "O₃",
+                description: "A triatomic molecule with a bent structure, important for atmospheric protection.",
+                atoms: [
+                    { element: 'O', position: [0, 0, 0] },
+                    { element: 'O', position: [1.28, 0, 0] },
+                    { element: 'O', position: [-0.64, 1.11, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 2 },
+                    { atoms: [0, 2], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One double bond (O=O), one single bond (O-O)<br>
+                    • <strong>Bond angles:</strong> 116.8°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Terminal O (δ-), central O (δ+)<br>
+                    • <strong>Lone pairs on central atom:</strong> 1<br>
+                    • <strong>Lone pairs on terminal atoms:</strong> 2, 3<br>
+                    • <strong>Bond pairs:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 0.53 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp²<br>
+                    • <strong>Molecular geometry:</strong> Bent<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal planar
+                `
+            },
+            ethanol: {
+                name: "Ethanol",
+                formula: "C₂H₅OH",
+                description: "Ethanol is the alcohol found in alcoholic beverages. It has a hydroxyl group (-OH) attached to an ethyl group.",
+                atoms: [
+                    { element: 'C', position: [0, 0, 0] },
+                    { element: 'C', position: [1.5, 0, 0] },
+                    { element: 'O', position: [2.2, 1.0, 0] },
+                    { element: 'H', position: [-0.5, 0.9, 0] },
+                    { element: 'H', position: [-0.5, -0.9, 0] },
+                    { element: 'H', position: [0, 0, 1.0] },
+                    { element: 'H', position: [2.0, -0.9, 0] },
+                    { element: 'H', position: [1.5, 0, 1.0] },
+                    { element: 'H', position: [3.2, 1.0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [1, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [0, 4], type: 1 },
+                    { atoms: [0, 5], type: 1 },
+                    { atoms: [1, 6], type: 1 },
+                    { atoms: [1, 7], type: 1 },
+                    { atoms: [2, 8], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Seven single bonds (C-C, C-H, O-H)<br>
+                    • <strong>Bond angles:</strong> 109.5° (tetrahedral)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ-), H (δ+), O (δ-)<br>
+                    • <strong>Lone pairs on oxygen:</strong> 2<br>
+                    • <strong>Bond pairs:</strong> 8<br>
+                    • <strong>Dipole moment:</strong> 1.69 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Tetrahedral<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
             },
             methane: {
                 name: "Methane",
                 formula: "CH₄",
-                description: "Methane is the simplest hydrocarbon with a tetrahedral geometry. It's the main component of natural gas.",
+                description: "The simplest hydrocarbon with a tetrahedral geometry. It's the main component of natural gas.",
                 atoms: [
                     { element: 'C', position: [0, 0, 0] },
                     { element: 'H', position: [0.629, 0.629, 0.629] },
@@ -867,7 +1078,82 @@ Bonds:
                     { atoms: [0, 2], type: 1 },
                     { atoms: [0, 3], type: 1 },
                     { atoms: [0, 4], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Four single bonds (C-H)<br>
+                    • <strong>Bond angles:</strong> 109.5° (tetrahedral)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on central atom:</strong> 0<br>
+                    • <strong>Bond pairs on central atom:</strong> 4<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Tetrahedral<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
+            },
+            ethylene: {
+                name: "Ethylene",
+                formula: "C₂H₄",
+                description: "An unsaturated hydrocarbon with a double bond between two carbon atoms.",
+                atoms: [
+                    { element: 'C', position: [-0.664, 0, 0] },
+                    { element: 'C', position: [0.664, 0, 0] },
+                    { element: 'H', position: [-1.24, 0.928, 0] },
+                    { element: 'H', position: [-1.24, -0.928, 0] },
+                    { element: 'H', position: [1.24, 0.928, 0] },
+                    { element: 'H', position: [1.24, -0.928, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 2 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [1, 4], type: 1 },
+                    { atoms: [1, 5], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One double bond (C=C), four single bonds (C-H)<br>
+                    • <strong>Bond angles:</strong> 120° around each carbon<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs:</strong> 0<br>
+                    • <strong>Bond pairs:</strong> 5<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp²<br>
+                    • <strong>Molecular geometry:</strong> Planar<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal planar
+                `
+            },
+            acetylene: {
+                name: "Acetylene",
+                formula: "C₂H₂",
+                description: "A hydrocarbon with a triple bond between two carbon atoms.",
+                atoms: [
+                    { element: 'C', position: [-0.6, 0, 0] },
+                    { element: 'C', position: [0.6, 0, 0] },
+                    { element: 'H', position: [-1.66, 0, 0] },
+                    { element: 'H', position: [1.66, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 3 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [1, 3], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> One triple bond (C≡C), two single bonds (C-H)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs:</strong> 0<br>
+                    • <strong>Bond pairs:</strong> 4<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Linear
+                `
             },
             ammonia: {
                 name: "Ammonia",
@@ -883,65 +1169,317 @@ Bonds:
                     { atoms: [0, 1], type: 1 },
                     { atoms: [0, 2], type: 1 },
                     { atoms: [0, 3], type: 1 }
-                ]
-            },
-            "carbon-dioxide": {
-                name: "Carbon Dioxide",
-                formula: "CO₂",
-                description: "Carbon dioxide is a linear molecule. It's a greenhouse gas produced by respiration and combustion.",
-                atoms: [
-                    { element: 'C', position: [0, 0, 0] },
-                    { element: 'O', position: [1.16, 0, 0] },
-                    { element: 'O', position: [-1.16, 0, 0] }
                 ],
-                bonds: [
-                    { atoms: [0, 1], type: 2 },
-                    { atoms: [0, 2], type: 2 }
-                ]
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Three single bonds (N-H)<br>
+                    • <strong>Bond angles:</strong> 107°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> N (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on central atom:</strong> 1<br>
+                    • <strong>Bond pairs on central atom:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 1.47 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Trigonal pyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
             },
-            ethanol: {
-                name: "Ethanol",
-                formula: "C₂H₅OH",
-                description: "Ethanol is the alcohol found in alcoholic beverages. It has a hydroxyl group (-OH) attached to an ethyl group.",
+            phosphine: {
+                name: "Phosphine",
+                formula: "PH₃",
+                description: "A colorless, flammable gas with a pyramidal structure similar to ammonia.",
                 atoms: [
-                    { element: 'C', position: [-0.748, -0.015, 0.024] },
-                    { element: 'C', position: [0.748, 0.015, -0.024] },
-                    { element: 'O', position: [1.135, 1.232, -0.657] },
-                    { element: 'H', position: [-1.166, -0.738, -0.692] },
-                    { element: 'H', position: [-1.166, -0.288, 0.999] },
-                    { element: 'H', position: [-1.166, 0.929, -0.331] },
-                    { element: 'H', position: [1.166, 0.288, 0.951] },
-                    { element: 'H', position: [1.166, -0.707, -0.692] },
-                    { element: 'H', position: [2.095, 1.169, -0.657] }
+                    { element: 'P', position: [0, 0, 0] },
+                    { element: 'H', position: [1.42, 0, 0] },
+                    { element: 'H', position: [-0.71, 1.22, 0] },
+                    { element: 'H', position: [-0.71, -1.22, 0] }
                 ],
                 bonds: [
                     { atoms: [0, 1], type: 1 },
-                    { atoms: [1, 2], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Three single bonds (P-H)<br>
+                    • <strong>Bond angles:</strong> 93.5°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> P (δ+), H (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 1<br>
+                    • <strong>Bond pairs on central atom:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 0.58 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Trigonal pyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
+            },
+            phosphorus_pentachloride: {
+                name: "Phosphorus Pentachloride",
+                formula: "PCl₅",
+                description: "A yellow crystalline solid that exists as a trigonal bipyramidal molecule.",
+                atoms: [
+                    { element: 'P', position: [0, 0, 0] },
+                    { element: 'Cl', position: [2.14, 0, 0] },
+                    { element: 'Cl', position: [-2.14, 0, 0] },
+                    { element: 'Cl', position: [0, 2.14, 0] },
+                    { element: 'Cl', position: [0, -2.14, 0] },
+                    { element: 'Cl', position: [0, 0, 2.14] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [0, 4], type: 1 },
+                    { atoms: [0, 5], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Five single bonds (P-Cl)<br>
+                    • <strong>Bond angles:</strong> 90° (equatorial), 120° (axial-equatorial)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> P (δ+), Cl (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 0<br>
+                    • <strong>Bond pairs on central atom:</strong> 5<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³d<br>
+                    • <strong>Molecular geometry:</strong> Trigonal bipyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal bipyramidal
+                `
+            },
+            phosphorus_pentafluoride: {
+                name: "Phosphorus Pentafluoride",
+                formula: "PF₅",
+                description: "A colorless gas with trigonal bipyramidal geometry.",
+                atoms: [
+                    { element: 'P', position: [0, 0, 0] },
+                    { element: 'F', position: [1.58, 0, 0] },
+                    { element: 'F', position: [-1.58, 0, 0] },
+                    { element: 'F', position: [0, 1.58, 0] },
+                    { element: 'F', position: [0, -1.58, 0] },
+                    { element: 'F', position: [0, 0, 1.58] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [0, 4], type: 1 },
+                    { atoms: [0, 5], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Five single bonds (P-F)<br>
+                    • <strong>Bond angles:</strong> 90° (equatorial), 120° (axial-equatorial)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> P (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 0<br>
+                    • <strong>Bond pairs on central atom:</strong> 5<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³d<br>
+                    • <strong>Molecular geometry:</strong> Trigonal bipyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal bipyramidal
+                `
+            },
+            sulfur_hexafluoride: {
+                name: "Sulfur Hexafluoride",
+                formula: "SF₆",
+                description: "A colorless, odorless gas with octahedral geometry.",
+                atoms: [
+                    { element: 'S', position: [0, 0, 0] },
+                    { element: 'F', position: [1.56, 0, 0] },
+                    { element: 'F', position: [-1.56, 0, 0] },
+                    { element: 'F', position: [0, 1.56, 0] },
+                    { element: 'F', position: [0, -1.56, 0] },
+                    { element: 'F', position: [0, 0, 1.56] },
+                    { element: 'F', position: [0, 0, -1.56] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
                     { atoms: [0, 3], type: 1 },
                     { atoms: [0, 4], type: 1 },
                     { atoms: [0, 5], type: 1 },
-                    { atoms: [1, 6], type: 1 },
-                    { atoms: [1, 7], type: 1 },
-                    { atoms: [2, 8], type: 1 }
-                ]
+                    { atoms: [0, 6], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Six single bonds (S-F)<br>
+                    • <strong>Bond angles:</strong> 90°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> S (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 0<br>
+                    • <strong>Bond pairs on central atom:</strong> 6<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³d²<br>
+                    • <strong>Molecular geometry:</strong> Octahedral<br>
+                    • <strong>Electron domain geometry:</strong> Octahedral
+                `
+            },
+            chlorine_trifluoride: {
+                name: "Chlorine Trifluoride",
+                formula: "ClF₃",
+                description: "A greenish-yellow gas with T-shaped geometry.",
+                atoms: [
+                    { element: 'Cl', position: [0, 0, 0] },
+                    { element: 'F', position: [1.7, 0, 0] },
+                    { element: 'F', position: [-0.85, 1.47, 0] },
+                    { element: 'F', position: [0, 0, 1.7] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Three single bonds (Cl-F)<br>
+                    • <strong>Bond angles:</strong> 87.5° (equatorial), 175° (axial)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Cl (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 2<br>
+                    • <strong>Bond pairs on central atom:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 0.55 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³d<br>
+                    • <strong>Molecular geometry:</strong> T-shaped<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal bipyramidal
+                `
+            },
+            bromine_pentafluoride: {
+                name: "Bromine Pentafluoride",
+                formula: "BrF₅",
+                description: "A colorless liquid with square pyramidal geometry.",
+                atoms: [
+                    { element: 'Br', position: [0, 0, 0] },
+                    { element: 'F', position: [1.77, 0, 0] },
+                    { element: 'F', position: [-1.77, 0, 0] },
+                    { element: 'F', position: [0, 1.77, 0] },
+                    { element: 'F', position: [0, -1.77, 0] },
+                    { element: 'F', position: [0, 0, 1.77] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [0, 4], type: 1 },
+                    { atoms: [0, 5], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Five single bonds (Br-F)<br>
+                    • <strong>Bond angles:</strong> 84.8° (basal), 89.9° (basal-axial)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Br (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 1<br>
+                    • <strong>Bond pairs on central atom:</strong> 5<br>
+                    • <strong>Dipole moment:</strong> 1.51 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³d²<br>
+                    • <strong>Molecular geometry:</strong> Square pyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Octahedral
+                `
+            },
+            xenon_difluoride: {
+                name: "Xenon Difluoride",
+                formula: "XeF₂",
+                description: "A white crystalline solid with linear geometry.",
+                atoms: [
+                    { element: 'Xe', position: [0, 0, 0] },
+                    { element: 'F', position: [2.0, 0, 0] },
+                    { element: 'F', position: [-2.0, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Two single bonds (Xe-F)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Xe (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 3<br>
+                    • <strong>Bond pairs on central atom:</strong> 2<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³d<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal bipyramidal
+                `
+            },
+            xenon_oxytetrafluoride: {
+                name: "Xenon Oxytetrafluoride",
+                formula: "XeOF₄",
+                description: "A colorless liquid with square pyramidal geometry.",
+                atoms: [
+                    { element: 'Xe', position: [0, 0, 0] },
+                    { element: 'O', position: [0, 0, 1.8] },
+                    { element: 'F', position: [1.8, 0, 0] },
+                    { element: 'F', position: [-1.8, 0, 0] },
+                    { element: 'F', position: [0, 1.8, 0] },
+                    { element: 'F', position: [0, -1.8, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 },
+                    { atoms: [0, 3], type: 1 },
+                    { atoms: [0, 4], type: 1 },
+                    { atoms: [0, 5], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Five single bonds (Xe-F), one single bond (Xe-O)<br>
+                    • <strong>Bond angles:</strong> 90° (basal), 89.9° (basal-axial)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Xe (δ+), F (δ-), O (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 1<br>
+                    • <strong>Bond pairs on central atom:</strong> 5<br>
+                    • <strong>Dipole moment:</strong> 1.51 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³d²<br>
+                    • <strong>Molecular geometry:</strong> Square pyramidal<br>
+                    • <strong>Electron domain geometry:</strong> Octahedral
+                `
+            },
+            krypton_difluoride: {
+                name: "Krypton Difluoride",
+                formula: "KrF₂",
+                description: "A white crystalline solid with linear geometry.",
+                atoms: [
+                    { element: 'Kr', position: [0, 0, 0] },
+                    { element: 'F', position: [2.0, 0, 0] },
+                    { element: 'F', position: [-2.0, 0, 0] }
+                ],
+                bonds: [
+                    { atoms: [0, 1], type: 1 },
+                    { atoms: [0, 2], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Two single bonds (Kr-F)<br>
+                    • <strong>Bond angles:</strong> 180° (linear)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> Kr (δ+), F (δ-)<br>
+                    • <strong>Lone pairs on central atom:</strong> 3<br>
+                    • <strong>Bond pairs on central atom:</strong> 2<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp³d<br>
+                    • <strong>Molecular geometry:</strong> Linear<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal bipyramidal
+                `
             },
             benzene: {
                 name: "Benzene",
                 formula: "C₆H₆",
-                description: "Benzene is an aromatic hydrocarbon with a planar hexagonal structure and delocalized π electrons.",
+                description: "Benzene is an aromatic hydrocarbon with a planar hexagonal ring structure and delocalized π electrons.",
                 atoms: [
-                    { element: 'C', position: [1.21, 0.7, 0] },
-                    { element: 'C', position: [1.21, -0.7, 0] },
-                    { element: 'C', position: [0, -1.4, 0] },
-                    { element: 'C', position: [-1.21, -0.7, 0] },
-                    { element: 'C', position: [-1.21, 0.7, 0] },
-                    { element: 'C', position: [0, 1.4, 0] },
-                    { element: 'H', position: [2.15, 1.24, 0] },
-                    { element: 'H', position: [2.15, -1.24, 0] },
-                    { element: 'H', position: [0, -2.48, 0] },
-                    { element: 'H', position: [-2.15, -1.24, 0] },
-                    { element: 'H', position: [-2.15, 1.24, 0] },
-                    { element: 'H', position: [0, 2.48, 0] }
+                    { element: 'C', position: [1.4, 0, 0] },
+                    { element: 'C', position: [0.7, 1.212, 0] },
+                    { element: 'C', position: [-0.7, 1.212, 0] },
+                    { element: 'C', position: [-1.4, 0, 0] },
+                    { element: 'C', position: [-0.7, -1.212, 0] },
+                    { element: 'C', position: [0.7, -1.212, 0] },
+                    { element: 'H', position: [2.5, 0, 0] },
+                    { element: 'H', position: [1.25, 2.165, 0] },
+                    { element: 'H', position: [-1.25, 2.165, 0] },
+                    { element: 'H', position: [-2.5, 0, 0] },
+                    { element: 'H', position: [-1.25, -2.165, 0] },
+                    { element: 'H', position: [1.25, -2.165, 0] }
                 ],
                 bonds: [
                     { atoms: [0, 1], type: 1.5 },
@@ -956,31 +1494,49 @@ Bonds:
                     { atoms: [3, 9], type: 1 },
                     { atoms: [4, 10], type: 1 },
                     { atoms: [5, 11], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Six aromatic bonds (C-C), six single bonds (C-H)<br>
+                    • <strong>Bond angles:</strong> 120°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> None (nonpolar)<br>
+                    • <strong>Lone pairs:</strong> 0<br>
+                    • <strong>Bond pairs:</strong> 12<br>
+                    • <strong>Dipole moment:</strong> 0 D (nonpolar)<br>
+                    • <strong>Hybridization:</strong> sp²<br>
+                    • <strong>Molecular geometry:</strong> Planar hexagonal<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal planar
+                `
             },
             glucose: {
                 name: "Glucose",
                 formula: "C₆H₁₂O₆",
-                description: "Glucose is a simple sugar and important energy source in living organisms.",
+                description: "Glucose is a simple sugar and important energy source in living organisms with a six-membered ring structure.",
                 atoms: [
-                    { element: 'C', position: [1.2, 0.8, 0] },
-                    { element: 'C', position: [0, 1.2, 0.5] },
-                    { element: 'C', position: [-1.2, 0.8, 0] },
-                    { element: 'C', position: [-1.2, -0.8, 0] },
-                    { element: 'C', position: [0, -1.2, -0.5] },
-                    { element: 'C', position: [1.2, -0.8, 0] },
-                    { element: 'O', position: [2.4, 1.2, 0.5] },
-                    { element: 'O', position: [0, 2.4, 0.8] },
-                    { element: 'O', position: [-2.4, 1.2, 0.5] },
-                    { element: 'O', position: [-2.4, -1.2, -0.5] },
-                    { element: 'O', position: [0, -2.4, -0.8] },
-                    { element: 'O', position: [2.4, -1.2, -0.5] },
-                    { element: 'H', position: [1.2, 0.8, -1] },
-                    { element: 'H', position: [0, 0.8, 1.2] },
-                    { element: 'H', position: [-1.2, 0.8, -1] },
-                    { element: 'H', position: [-1.2, -0.8, 1] },
-                    { element: 'H', position: [0, -1.2, -1.7] },
-                    { element: 'H', position: [1.2, -0.8, 1] }
+                    { element: 'C', position: [0, 0, 0] },
+                    { element: 'C', position: [1.5, 0, 0] },
+                    { element: 'C', position: [2.25, 1.299, 0] },
+                    { element: 'C', position: [1.5, 2.598, 0] },
+                    { element: 'C', position: [0, 2.598, 0] },
+                    { element: 'C', position: [-0.75, 1.299, 0] },
+                    { element: 'O', position: [-0.75, -1.299, 0] },
+                    { element: 'O', position: [3.0, 1.299, 0] },
+                    { element: 'O', position: [1.5, 3.897, 0] },
+                    { element: 'O', position: [-0.75, 3.897, 0] },
+                    { element: 'O', position: [-1.5, 1.299, 0] },
+                    { element: 'O', position: [0, -1.299, 0] },
+                    { element: 'H', position: [0, -1.0, 0] },
+                    { element: 'H', position: [1.5, -1.0, 0] },
+                    { element: 'H', position: [2.25, 2.299, 0] },
+                    { element: 'H', position: [1.5, 1.598, 0] },
+                    { element: 'H', position: [0, 3.598, 0] },
+                    { element: 'H', position: [-0.75, 0.299, 0] },
+                    { element: 'H', position: [3.5, 1.299, 0] },
+                    { element: 'H', position: [1.5, 4.897, 0] },
+                    { element: 'H', position: [-0.75, 4.897, 0] },
+                    { element: 'H', position: [-2.0, 1.299, 0] },
+                    { element: 'H', position: [0, -2.299, 0] }
                 ],
                 bonds: [
                     { atoms: [0, 1], type: 1 },
@@ -988,35 +1544,54 @@ Bonds:
                     { atoms: [2, 3], type: 1 },
                     { atoms: [3, 4], type: 1 },
                     { atoms: [4, 5], type: 1 },
+                    { atoms: [5, 0], type: 1 },
                     { atoms: [0, 6], type: 1 },
-                    { atoms: [1, 7], type: 1 },
-                    { atoms: [2, 8], type: 1 },
-                    { atoms: [3, 9], type: 1 },
-                    { atoms: [4, 10], type: 1 },
-                    { atoms: [5, 11], type: 1 },
+                    { atoms: [2, 7], type: 1 },
+                    { atoms: [3, 8], type: 1 },
+                    { atoms: [4, 9], type: 1 },
+                    { atoms: [5, 10], type: 1 },
+                    { atoms: [0, 11], type: 1 },
                     { atoms: [0, 12], type: 1 },
                     { atoms: [1, 13], type: 1 },
                     { atoms: [2, 14], type: 1 },
                     { atoms: [3, 15], type: 1 },
                     { atoms: [4, 16], type: 1 },
-                    { atoms: [5, 17], type: 1 }
-                ]
+                    { atoms: [5, 17], type: 1 },
+                    { atoms: [7, 18], type: 1 },
+                    { atoms: [8, 19], type: 1 },
+                    { atoms: [9, 20], type: 1 },
+                    { atoms: [10, 21], type: 1 },
+                    { atoms: [11, 22], type: 1 }
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> 23 single bonds (C-C, C-O, C-H, O-H)<br>
+                    • <strong>Bond angles:</strong> 109.5° (tetrahedral)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ-), H (δ+), O (δ-)<br>
+                    • <strong>Lone pairs on oxygen atoms:</strong> 6<br>
+                    • <strong>Bond pairs:</strong> 23<br>
+                    • <strong>Dipole moment:</strong> 3.0 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Chair conformation<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
             },
             acetone: {
                 name: "Acetone",
                 formula: "C₃H₆O",
-                description: "Acetone is the simplest ketone. It's a common solvent and the main component of nail polish remover.",
+                description: "Acetone is the simplest ketone with a carbonyl group. It's a common solvent and the main component of nail polish remover.",
                 atoms: [
                     { element: 'C', position: [0, 0, 0] },
                     { element: 'C', position: [-1.5, 0, 0] },
                     { element: 'C', position: [1.5, 0, 0] },
                     { element: 'O', position: [0, 1.2, 0] },
-                    { element: 'H', position: [-1.5, -1, 0.5] },
-                    { element: 'H', position: [-1.5, -1, -0.5] },
-                    { element: 'H', position: [-1.5, 1, 0.5] },
-                    { element: 'H', position: [1.5, -1, 0.5] },
-                    { element: 'H', position: [1.5, -1, -0.5] },
-                    { element: 'H', position: [1.5, 1, 0.5] }
+                    { element: 'H', position: [-1.5, -1.0, 0] },
+                    { element: 'H', position: [-1.5, 0, 1.0] },
+                    { element: 'H', position: [-1.5, 0, -1.0] },
+                    { element: 'H', position: [1.5, -1.0, 0] },
+                    { element: 'H', position: [1.5, 0, 1.0] },
+                    { element: 'H', position: [1.5, 0, -1.0] }
                 ],
                 bonds: [
                     { atoms: [0, 1], type: 1 },
@@ -1028,28 +1603,54 @@ Bonds:
                     { atoms: [2, 7], type: 1 },
                     { atoms: [2, 8], type: 1 },
                     { atoms: [2, 9], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Seven single bonds (C-C, C-H), one double bond (C=O)<br>
+                    • <strong>Bond angles:</strong> 120° around carbonyl carbon<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ+), O (δ-), methyl C (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on oxygen:</strong> 2<br>
+                    • <strong>Bond pairs:</strong> 9<br>
+                    • <strong>Dipole moment:</strong> 2.88 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp² (carbonyl C), sp³ (methyl C)<br>
+                    • <strong>Molecular geometry:</strong> Trigonal planar (around carbonyl)<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal planar
+                `
             },
             formaldehyde: {
                 name: "Formaldehyde",
                 formula: "CH₂O",
-                description: "Formaldehyde is the simplest aldehyde. It's used as a disinfectant and preservative.",
+                description: "Formaldehyde is the simplest aldehyde with a carbonyl group. It's used as a disinfectant and preservative.",
                 atoms: [
                     { element: 'C', position: [0, 0, 0] },
                     { element: 'O', position: [0, 1.2, 0] },
-                    { element: 'H', position: [-1, -0.5, 0] },
-                    { element: 'H', position: [1, -0.5, 0] }
+                    { element: 'H', position: [0.9, -0.6, 0] },
+                    { element: 'H', position: [-0.9, -0.6, 0] }
                 ],
                 bonds: [
                     { atoms: [0, 1], type: 2 },
                     { atoms: [0, 2], type: 1 },
                     { atoms: [0, 3], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Two single bonds (C-H), one double bond (C=O)<br>
+                    • <strong>Bond angles:</strong> 120°<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> C (δ+), O (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on oxygen:</strong> 2<br>
+                    • <strong>Bond pairs:</strong> 4<br>
+                    • <strong>Dipole moment:</strong> 2.33 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp²<br>
+                    • <strong>Molecular geometry:</strong> Trigonal planar<br>
+                    • <strong>Electron domain geometry:</strong> Trigonal planar
+                `
             },
             "hydrogen-peroxide": {
                 name: "Hydrogen Peroxide",
                 formula: "H₂O₂",
-                description: "Hydrogen peroxide is a reactive oxygen species with an open book structure.",
+                description: "Hydrogen peroxide is a reactive oxygen species with an open book structure and weak O-O bond.",
                 atoms: [
                     { element: 'O', position: [-0.5, 0, 0] },
                     { element: 'O', position: [0.5, 0, 0] },
@@ -1060,7 +1661,20 @@ Bonds:
                     { atoms: [0, 1], type: 1 },
                     { atoms: [0, 2], type: 1 },
                     { atoms: [1, 3], type: 1 }
-                ]
+                ],
+                analysis: `
+                    <strong>Detailed Analysis:</strong><br>
+                    • <strong>Bond types:</strong> Three single bonds (O-O, O-H)<br>
+                    • <strong>Bond angles:</strong> 94.8° (O-O-H), 180° (H-O-O-H)<br>
+                    • <strong>Molecular charge:</strong> 0 (neutral)<br>
+                    • <strong>Partial charges:</strong> O (δ-), H (δ+)<br>
+                    • <strong>Lone pairs on oxygen atoms:</strong> 4<br>
+                    • <strong>Bond pairs:</strong> 3<br>
+                    • <strong>Dipole moment:</strong> 2.26 D (polar)<br>
+                    • <strong>Hybridization:</strong> sp³<br>
+                    • <strong>Molecular geometry:</strong> Skew conformation<br>
+                    • <strong>Electron domain geometry:</strong> Tetrahedral
+                `
             }
         };
         
@@ -1150,9 +1764,32 @@ Bonds:
                 document.querySelectorAll('.molecule-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const moleculeName = this.getAttribute('data-molecule');
-                createMolecule(molecules[moleculeName]);
+                const moleculeData = molecules[moleculeName];
+                createMolecule(moleculeData);
+
+                // Show detailed analysis for preset molecules
+                if (moleculeData.analysis) {
+                    document.getElementById('ai-details').innerHTML = moleculeData.analysis;
+                    document.getElementById('ai-analysis').style.display = 'block';
+                }
             });
         });
+
+        // Toggle molecule list visibility
+        function toggleMoleculeList() {
+            const moleculeList = document.getElementById('molecule-list');
+            const minimizeBtn = document.getElementById('minimize-btn');
+
+            if (moleculeList.style.display === 'none') {
+                moleculeList.style.display = 'block';
+                minimizeBtn.textContent = '− Minimize';
+                showNotification('Molecule list expanded', 'info');
+            } else {
+                moleculeList.style.display = 'none';
+                minimizeBtn.textContent = '+ Expand';
+                showNotification('Molecule list minimized', 'info');
+            }
+        }
 
         // Custom molecule creation
         document.getElementById('create-custom').addEventListener('click', function() {
@@ -1216,7 +1853,7 @@ Bonds:
         // Generate molecule structure using OpenRouter AI
         async function generateMoleculeWithAI(description) {
             // Hardcoded API key - replace with your actual OpenRouter API key
-            const apiKey = "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";
+            const apiKey = "sk-or-v1-code";
 
             const prompt = `You are a chemistry expert. Generate a complete molecular analysis for: "${description}"
 
@@ -1839,4 +2476,3 @@ Bonds:
     </script>
 </body>
 </html>
-
